@@ -127,10 +127,16 @@ After that, you can use the standard procedure:
     $ ./configure
     $ make
 
+ERROR:
+complaining about SSL_OP_NO_TICKET in file exmpp_tls_openssl.c
+This error is due to a break with gtalk. openssl0.9x earlier do not ahve this options. You also need to check your openssl library is compiled with DOPENSSL_OP_NOTICKET or else this flag isn't enabled.
+
+
 WARNING: Erlang support in old autoconf 2.62 and 2.63 was broken! If you
 must stick to these versions, you must apply the following patch to
 'erlang.m4' in 'share/autoconf-2.62/autoconf' (patch taken from official
 autoconf GIT repository):
+
 
 ----8<----
 --- erlang.m4-broken	2009-01-14 17:54:41.000000000 +0100
@@ -150,3 +156,5 @@ After applying the patch, you must run the following commands:
 
     $ cd [...]/share/autoconf-2.62/autoconf
     $ autom4te --language=autoconf --freeze --output=autoconf.m4f
+
+
